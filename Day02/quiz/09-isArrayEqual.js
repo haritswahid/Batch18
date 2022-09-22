@@ -1,5 +1,5 @@
 function isArraysEqual(arrayA, arrayB) {
-
+  return arrayA.sort().join() === arrayB.sort().join()
 }
 
 const fruitNamesA = ['rambutan', 'durian', 'jeruk', 'nangka'];
