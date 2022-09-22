@@ -6,14 +6,14 @@ const prod3 = new Product(3, "Mesin Cuci LG", "ELECTRONIC", 3500000, 1);
 const prod4 = new Product(4, "IPHONE", "HP", 6000000, 2);
 const prod5 = new Product(5, "Asus Laptop", "COMPUTER", 6500000, 4);
 
-let listCart = [];
+let listCart = [prod1,prod2,prod3,prod4,prod5];
 
-
-const totalTagihan = listCart.reduce((sum, el) => sum + el.subTotal, 0)
+console.log(listCart);
+const totalTagihan = listCart.reduce((sum, el) => sum + (el.price*el.totalBuy), 0)
 console.log(`Total Tagihan =${totalTagihan}`);//Total Tagihan =64700000
 
 const totalTagihanDiscount = (discount) => {
-
+  return totalTagihan-((discount/100)*totalTagihan)
 }
 
-console.log(`Total Tagihan discount=${totalTagihanDiscount(10)}`);//Total Tagihan discount=58580000
+console.log(`Total Tagihan discount=${totalTagihanDiscount(10)}`);//Total Tagihan discount=58230000
