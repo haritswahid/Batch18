@@ -4,7 +4,18 @@
  */
 
 function getSalesTax(price, tax) {
-        
+  if(isNaN(price) && isNaN(tax)){
+    return "Price & Pajak harus dalam angka"
+  }
+  if(isNaN(price)){
+    return "Price harus dalam angka"
+  }
+  if(isNaN(tax)){
+    return "Pajak harus dalam angka"
+  }
+  return `Total Sales : Rp.${price}\n`
+        +`Pajak : Rp.${price*tax/100}\n`
+        +`TotalHarga+Pajak : Rp.${price+(price*tax/100)}`
 }
 
 console.log(getSalesTax("a", 1));//Price harus dalam angka

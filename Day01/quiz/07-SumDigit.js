@@ -3,7 +3,18 @@
  */
 
 function sumDigit(n){
-   
+  if(isNaN(n)){
+    return `${n} is not number, try again...`
+  }
+  if(n>=10000){
+    return `${n} harus lebih kecil dari 10000`
+  }
+  n = n.toString()
+  let total = 0;
+  for (let i = 0; i < n.length; i++) {
+    total += parseInt(n[i])
+  }
+  return total;
 }
 
 console.log(sumDigit(1234)); //10
