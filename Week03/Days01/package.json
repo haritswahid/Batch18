@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec babel-node ./server/index.js"
+    "start": "nodemon --exec babel-node ./server/index3.js"
   },
   "dependencies": {
     "express": "^4.18.1",

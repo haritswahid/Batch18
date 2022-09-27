@@ -5,16 +5,16 @@ dotenv.config()
 const Pool = require('pg').Pool;
 const pool = new Pool({
     host : "localhost",
-    user : "postgres",
-    password  : "admin",
-    database : "HR",
+    user : "user1",
+    password  : "user1",
+    database : "hr",
     port : 5432
 })
 
 const app = express()
 app.use(express.json())
 
-const port = process.env.PORT || 3003
+const port = process.env.PORT || 7000
 
 app.listen(port,()=>{console.log('Server listening on port '+port)})
 
