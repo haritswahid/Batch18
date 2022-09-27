@@ -1,0 +1,53 @@
+-- Kondisi
+-- Masa kerja >= 20 tahun, bonus dikali 5
+-- Masa kerja < 20 tahun, bonus dikali 3
+
+-- 1
+SELECT email, TRIM(CONCAT(first_name,' ',last_name)), salary, extract(year from age(now(),hire_date)) work_years,
+CASE
+    WHEN extract(year from age(now(),hire_date)) >= 20 THEN salary*5
+    ELSE salary*3
+END bonus
+FROM employees;
+
+-- 2
+SELECT work_period_id,SUM(bonus) total_bonus FROM (SELECT 
+CASE
+    WHEN extract(year from age(now(),hire_date)) >= 20 THEN 'more_than_20tr'
+    ELSE 'less_than_20tr'
+END work_period_id,
+CASE
+    WHEN extract(year from age(now(),hire_date)) >= 20 THEN salary*5
+    ELSE salary*3
+END bonus
+FROM employees
+) tb GROUP BY work_period_id;
+
+-- 3 
+SELECT SUM(more_20yr) more_20yr,SUM(less_20yr) less_20yr
+FROM (
+	SELECT department_id, 
+	CASE WHEN extract(year from age(now(),hire_date)) >= 20 THEN 1
+		ELSE 0
+	END more_20yr,
+	CASE WHEN extract(year from age(now(),hire_date)) < 20 THEN 1
+		ELSE 0
+	END less_20yr
+	FROM employees
+) em;
+
+-- 4
+SELECT department_name,
+COALESCE(SUM(more_20yr),0) more_20yr,
+COALESCE(SUM(less_20yr),0) less_20yr
+FROM departments dp JOIN (
+	SELECT department_id, 
+	CASE WHEN extract(year from age(now(),hire_date)) >= 20 THEN 1
+		ELSE 0
+	END more_20yr,
+	CASE WHEN extract(year from age(now(),hire_date)) < 20 THEN 1
+		ELSE 0
+	END less_20yr
+	FROM employees
+) em ON dp.department_id=em.department_id::INT
+GROUP BY dp.department_idw

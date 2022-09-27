@@ -1,0 +1,43 @@
+-- Kondisi
+-- Masa kerja >= 20 tahun, bonus dikali 5
+-- Masa kerja < 20 tahun, bonus dikali 3
+
+-- 1 tampilkan employees yang mendapatkan bonus akhir tahun (jika melihat kondisi, maka semua employee akan mendapat bonus)
+SELECT * FROM employees;
+
+-- 2 tampilkan bonus tiap masa kerja, menampilkan employee dan bonus berdasakan masa kerjanya
+SELECT email, TRIM(CONCAT(first_name,' ',last_name)), salary, extract(year from age(now(),hire_date)) work_years,
+CASE
+    WHEN extract(year from age(now(),hire_date)) >= 20 THEN salary*5
+    ELSE salary*3
+END bonus
+FROM employees;
+
+-- 3 
+SELECT SUM(more_20yr) more_20yr,SUM(less_20yr) less_20yr
+FROM (
+	SELECT department_id, 
+	CASE WHEN extract(year from age(now(),hire_date)) >= 20 THEN 1
+		ELSE 0
+	END more_20yr,
+	CASE WHEN extract(year from age(now(),hire_date)) < 20 THEN 1
+		ELSE 0
+	END less_20yr
+	FROM employees
+) em;
+
+-- 4
+SELECT department_name,
+COALESCE(SUM(more_20yr),0) more_20yr,
+COALESCE(SUM(less_20yr),0) less_20yr
+FROM departments dp JOIN (
+	SELECT department_id, 
+	CASE WHEN extract(year from age(now(),hire_date)) >= 20 THEN 1
+		ELSE 0
+	END more_20yr,
+	CASE WHEN extract(year from age(now(),hire_date)) < 20 THEN 1
+		ELSE 0
+	END less_20yr
+	FROM employees
+) em ON dp.department_id=em.department_id::INT
+GROUP BY dp.department_id;
