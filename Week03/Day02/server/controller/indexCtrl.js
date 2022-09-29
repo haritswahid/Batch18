@@ -4,6 +4,7 @@ import CtsCtrl from './countryCtrl'
 import LocCtrl from './locationCtrl'
 import JobCtrl from './jobCtrl'
 import EmpCtrl from './employeeCtrl'
+import DepCtrl from './departmentCtrl'
 export default {
     RegCtrl,
     UsrCtrl,
@@ -11,4 +12,5 @@ export default {
     LocCtrl,
     JobCtrl,
     EmpCtrl,
+    DepCtrl,
 }
