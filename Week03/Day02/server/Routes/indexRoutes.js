@@ -3,6 +3,7 @@ import UsrRoute from './userRoute'
 import CtsRoute from './countryRoute'
 import LocRoute from './locationRoute'
 import JobRoute from './jobRoute'
+import EmpRoute from './employeeRoute'
 
 export default {
     RegRoute,
@@ -10,4 +11,5 @@ export default {
     CtsRoute,
     LocRoute,
     JobRoute,
+    EmpRoute,
 }
