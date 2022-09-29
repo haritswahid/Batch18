@@ -25,6 +25,7 @@ app.use('/region',routes.RegRoute)
 app.use('/auth',routes.UsrRoute)
 app.use('/country',routes.CtsRoute)
 app.use('/location',routes.LocRoute)
+app.use('/job',routes.JobRoute)
 app.use('/images',express.static('images'))
 
 const dropDatabaseSync = false
@@ -33,7 +34,7 @@ sequelize.sync({force : dropDatabaseSync}).then(async()=>{
     if (dropDatabaseSync) {
         console.log("Database do not drop");
     }
-    app.listen(port,()=>{console.log('Server is listening on port '+port);console.log(process.env.PGUSER);})
+    app.listen(port,()=>{console.log('Server is listening on port '+port)})
 })
 
 export default app
