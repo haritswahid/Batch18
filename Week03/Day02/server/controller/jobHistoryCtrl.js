@@ -72,9 +72,9 @@ const create = async (req,res)=>{
 
 export default {
     findAll,
-    findOne,
+    // findOne,
     create,
-    update,
-    deleted,
-    querySQL
+    // update,
+    // deleted,
+    // querySQL
 }
