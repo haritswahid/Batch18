@@ -5,6 +5,7 @@ import LocRoute from './locationRoute'
 import JobRoute from './jobRoute'
 import EmpRoute from './employeeRoute'
 import DepRoute from './departmentRoute'
+import JhsRoute from './jobHistoryRoute'
 
 export default {
     RegRoute,
@@ -14,4 +15,5 @@ export default {
     JobRoute,
     EmpRoute,
     DepRoute,
+    JhsRoute,
 }
