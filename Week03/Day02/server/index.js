@@ -7,7 +7,7 @@ import helmet from "helmet";
 import models,{sequelize} from "./models/init-models";
 import routes from './Routes/indexRoutes'
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7000;
 const app = express()
 
 app.use(express.json())
@@ -24,6 +24,7 @@ app.use(async(req,res,next)=> {
 app.use('/region',routes.RegRoute)
 app.use('/auth',routes.UsrRoute)
 app.use('/country',routes.CtsRoute)
+app.use('/location',routes.LocRoute)
 app.use('/images',express.static('images'))
 
 const dropDatabaseSync = false
@@ -32,7 +33,7 @@ sequelize.sync({force : dropDatabaseSync}).then(async()=>{
     if (dropDatabaseSync) {
         console.log("Database do not drop");
     }
-    app.listen(port,()=>{console.log('Server is listening on port '+port)})
+    app.listen(port,()=>{console.log('Server is listening on port '+port);console.log(process.env.PGUSER);})
 })
 
 export default app
