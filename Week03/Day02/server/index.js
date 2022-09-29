@@ -27,6 +27,7 @@ app.use('/country',routes.CtsRoute)
 app.use('/location',routes.LocRoute)
 app.use('/job',routes.JobRoute)
 app.use('/employee',routes.EmpRoute)
+app.use('/department',routes.DepRoute)
 app.use('/images',express.static('images'))
 
 const dropDatabaseSync = false
