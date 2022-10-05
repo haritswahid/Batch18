@@ -1,9 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
+import 'dotenv/config';
 
 async function bootstrap() {
-  const port = 3000;
+  const port = process.env.PORT;
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.use(helmet());
