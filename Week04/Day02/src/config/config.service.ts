@@ -42,7 +42,7 @@ class ConfigService {
       entities: [
         process.env.NODE_ENV === 'prod'
           ? 'build/models/*{.ts,.js}'
-          : 'src/models/*{.ts,.js}',
+          : __dirname + '/models/*{.ts,.js}',
       ],
 
       migrationsTableName: 'migration',
