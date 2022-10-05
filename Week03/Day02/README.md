@@ -1,3 +1,8 @@
+# Day02 (Day01-updt)
+Pengenalan ExpressJS lebih dalam, Day02 ini diambil dari repository Day01 yang sudah diperbarui
+
+Dengan tugas penambahan controller untuk tabel-tabel lain, dan penyesuaian fitur upload file
+
 Dotenv adalah modul tanpa ketergantungan yang memuat environment variabel dari file .env ke dalam process.env. 
 
 Express.js, atau hanya Express, adalah sebuah framework aplikasi web back end untuk membangun RESTful API didalam Node.js.

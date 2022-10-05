@@ -1,3 +1,6 @@
+# Day01
+Pengenalan lingkungan ExpressJS
+
 Dotenv adalah modul tanpa ketergantungan yang memuat environment variabel dari file .env ke dalam process.env. 
 
 Express.js, atau hanya Express, adalah sebuah framework aplikasi web back end untuk membangun RESTful API didalam Node.js.

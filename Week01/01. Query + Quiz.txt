@@ -1,6 +1,8 @@
 CREATE TABLE regions (
-    region_id int primary key,
-    region_name varchar(22)
+    region_id SERIAL primary key,
+    region_name varchar(22),
+    region_photo varchar(255),
+    region_file varchar(255),
 );
 
 CREATE TABLE jobs (
@@ -70,10 +72,10 @@ CREATE TABLE job_history (
 --
 
 insert into regions (region_id, region_name) values
-(1, 'Europe'),
-(2, 'Americas'),
-(3, 'Asia'),
-(4, 'Middle East and Africa');
+(DEFAULT, 'Europe'),
+(DEFAULT, 'Americas'),
+(DEFAULT, 'Asia'),
+(DEFAULT, 'Middle East and Africa');
 
 --
 -- Data for Name: _hr_regions; Type: TABLE DATA; Schema: public; Owner: rebasedata
