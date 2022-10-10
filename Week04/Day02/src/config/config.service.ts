@@ -1,7 +1,7 @@
 // src/config/config.service.ts
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import 'dotenv/config';
-import { Regions } from '../models/Regions';
+// import { Regions } from '../models/Regions';
 
 class ConfigService {
   constructor(private env: { [k: string]: string | undefined }) {}
