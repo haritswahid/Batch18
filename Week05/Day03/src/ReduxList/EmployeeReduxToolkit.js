@@ -1,7 +1,7 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import EmpForm from '../Form/FormInput'
-import { doGetEmps, doAddEmps } from '../ReduxToolkit/EmpSlice'
+import { doAddEmps, doChangeSalary } from '../ReduxToolkit/EmpSlice'
 
 export default function EmployeeReduxToolkit() {
     const dispatch = useDispatch()
@@ -19,12 +19,19 @@ export default function EmployeeReduxToolkit() {
     const onSubmit = (event) => {
         event.preventDefault()
         const payload = {
-            empId: (Math.round(Math.random() * 10)),
+            empId: emp.slice(-1)[0].empId+1,
             fullname: values.fullname,
             salary: values.salary
         }
         dispatch(doAddEmps(payload))
         setDisplay(false)
+    }
+    const perubahanGaji = (id,num) => {
+        const payload = {
+            empId: id,
+            num
+        }
+        dispatch(doChangeSalary(payload))
     }
   return (
     <div>
@@ -51,6 +58,12 @@ export default function EmployeeReduxToolkit() {
                                                 <td>Emp Id : {emp.empId}</td>
                                                 <td>Full Name : {emp.fullname}</td>
                                                 <td>Salary : {emp.salary}</td>
+                                                <td>
+                                                    <button onClick={() => perubahanGaji(emp.empId,100)}> Penambahan Gaji </button>
+                                                </td>
+                                                <td>
+                                                    <button onClick={() => perubahanGaji(emp.empId,-100)}> Pengurangan Gaji </button>
+                                                </td>
                                             </tr>
                                         )
                                     })
