@@ -20,6 +20,9 @@ import { EmployeeController } from './controllers/employee.controller';
 import { Departments } from '../models/Departments';
 import { DepartmentService } from './services/department.service';
 import { DepartmentController } from './controllers/department.controller';
+import { JobHistory } from '../models/JobHistory';
+import { JobHistoryService } from './services/job_history.service';
+import { JobHistoryController } from './controllers/job_history.controller';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -29,6 +32,7 @@ import { DepartmentController } from './controllers/department.controller';
       Jobs,
       Employees,
       Departments,
+      JobHistory,
     ]),
     MulterModule.register(ConfigMulter.UploadFiles()),
   ],
@@ -39,6 +43,7 @@ import { DepartmentController } from './controllers/department.controller';
     JobService,
     EmployeeService,
     DepartmentService,
+    JobHistoryService,
   ],
   controllers: [
     RegionController,
@@ -47,6 +52,7 @@ import { DepartmentController } from './controllers/department.controller';
     JobController,
     EmployeeController,
     DepartmentController,
+    JobHistoryController,
   ],
 })
 export class ApiModule {}
