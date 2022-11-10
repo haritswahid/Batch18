@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config, { domain } from '../config/config';
+import { domain } from '../config/config';
 
 
 const signup = async(data)=>{
