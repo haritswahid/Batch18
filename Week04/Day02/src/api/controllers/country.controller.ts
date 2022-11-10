@@ -6,7 +6,9 @@ import {
   Param,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CountryService } from '../services/country.service';
 
 @Controller('api/country')
@@ -23,6 +25,7 @@ export class CountryController {
   }
 
   @Post()
+  @UseInterceptors(FileFieldsInterceptor([]))
   public async create(@Body() fields: any) {
     return this.countriesService.create(fields);
   }
