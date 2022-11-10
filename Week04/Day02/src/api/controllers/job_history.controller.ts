@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { JobHistoryService } from '../services/job_history.service';
 
-@Controller('job-history')
+@Controller('api/job-history')
 export class JobHistoryController {
   constructor(private jobHistorysService: JobHistoryService) {}
   @Get()
