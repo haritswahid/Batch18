@@ -20,6 +20,7 @@ export class CountryService {
       throw new NotFoundException(`Country with id: '${id}' not found`);
     return country;
   }
+
   public async create(fields) {
     try {
       const country = await this.countriesRepo.save({
