@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Regions } from '../../models/Regions';
@@ -13,7 +13,9 @@ export class RegionService {
   }
 
   public async findOne(id) {
-    return await this.regionsRepo.findOne({ where: { regionId: id } });
+    const region = await this.regionsRepo.findOne({ where: { regionId: id } });
+    if (!region) throw new NotFoundException(`Region id ${id} not found`);
+    return region;
   }
   public async create(file, fields) {
     try {
@@ -24,31 +26,39 @@ export class RegionService {
           regionFile: file.foto ? file.foto[0].originalname : null,
         });
         return region;
+      } else {
+        const region = await this.regionsRepo.save({
+          regionName: fields.regionName,
+          regionPhoto: null,
+          regionFile: null,
+        });
+        return region;
       }
     } catch (error) {
       return error.message;
     }
   }
   public async update(id, file, fields) {
-    try {
-      if (file) {
-        await this.regionsRepo.update(id, {
-          regionName: fields.regionName,
-          regionPhoto: file.file ? file.file[0].originalname : null,
-          regionFile: file.foto ? file.foto[0].originalname : null,
-        });
-        return await this.regionsRepo.findOne({ where: { regionId: id } });
-      }
-    } catch (error) {
-      return error.message;
+    let payload = {};
+    if (file) {
+      payload = {
+        regionName: fields.regionName,
+        regionPhoto: file.file ? file.file[0].originalname : null,
+        regionFile: file.foto ? file.foto[0].originalname : null,
+      };
+    } else {
+      payload = {
+        regionName: fields.regionName,
+      };
     }
+    const region = await this.regionsRepo.update(id, payload);
+    if (!region) throw new NotFoundException(`Region id ${id} not found`);
+    return await this.regionsRepo.findOne({ where: { regionId: id } });
   }
   async delete(id) {
-    try {
-      const region = await this.regionsRepo.delete(id);
-      return 'Delete' + region.affected + 'rows';
-    } catch (error) {
-      return error.message;
-    }
+    const region = await this.regionsRepo.delete(id);
+    if (!region.affected)
+      throw new NotFoundException(`Region id ${id} not found`);
+    return 'Delete ' + region.affected + ' rows';
   }
 }
