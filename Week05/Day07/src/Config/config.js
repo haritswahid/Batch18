@@ -1,4 +1,4 @@
 const config = {
-    domain : 'http://localhost:3002'
+    domain : 'http://localhost:9000'
 }
 export default config

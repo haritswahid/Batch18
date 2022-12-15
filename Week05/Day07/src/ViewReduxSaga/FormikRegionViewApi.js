@@ -42,7 +42,7 @@ export default function FormikRegionViewApi() {
             />
             :
             <>
-            <Header name={'Region'} setDisplay={setDisplay}/>
+              <Header name={'Region'} setDisplay={setDisplay} />
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto ">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
@@ -61,10 +61,8 @@ export default function FormikRegionViewApi() {
                         <td className="px-6 py-2">{reg.regionName}</td>
                         <td className="px-6 py-2">{reg.regionFile}</td>
                         <td className="px-6 py-2">{reg.regionPhoto}</td>
-                        <td>
-                          <td className='py-2'>
-                            <button type="button" className="cursor-pointer inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => onDelete(reg.regionId)}>Delete Region</button>
-                          </td>
+                        <td className='py-2 flex justify-evenly'>
+                          <button type="button" className="cursor-pointer inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => onDelete(reg.regionId)}>Delete Region</button>
                           <button type="button" className="cursor-pointer inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => onClick(reg.regionId)}>Edit Region</button>
                         </td>
                       </tr>

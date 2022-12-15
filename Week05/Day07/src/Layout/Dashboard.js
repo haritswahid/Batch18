@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
-const navigation = [
-    { name: 'Dashboard', href: '/', current: true },
+let navigation = [
+    { name: 'Dashboard', href: '/', current: false },
     { name: 'Region API', href: 'region', current: false },
     { name: 'Region API Formik', href: 'regionformik', current: false },
     { name: 'Region Redux', href: 'regionredux', current: false },
@@ -13,18 +13,16 @@ const navigation = [
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
-console.log(navigation.name);
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+    console.log(window.location.pathname);
+    navigation = navigation.map(e => {
+        // const current = `/${e.href}`===window.location.pathname||`${e.href}`===window.location.pathname
+        return {...e, current: `/${e.href}`===window.location.pathname||`${e.href}`===window.location.pathname}
+    })
+    // console.log(navigation);
     return (
         <>
-            {/*
-        This example requires updating your template:
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
             <div className="min-h-full">
                 <Disclosure as="nav" className="bg-gray-800">
                     {({ open }) => (
@@ -72,7 +70,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-
+{/* 
                             <Disclosure.Panel className="md:hidden">
                                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                     {navigation.map((item) => (
@@ -90,7 +88,7 @@ export default function Dashboard() {
                                         </Disclosure.Button>
                                     ))}
                                 </div>
-                            </Disclosure.Panel>
+                            </Disclosure.Panel> */}
                         </>
                     )}
                 </Disclosure>
