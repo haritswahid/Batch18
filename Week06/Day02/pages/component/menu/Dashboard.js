@@ -25,11 +25,11 @@ export default function Dashboard() {
         dispatch(doPushSignoutRequest())
         router.reload()
     }
-    useEffect(() => {
-        if (!UserProfile) {
-            router.push('/signin')
-        }
-    }, [UserProfile])
+    // useEffect(() => {
+    //     if (!UserProfile) {
+    //         router.push('/signin')
+    //     }
+    // }, [UserProfile])
     return (
         <>
             <div className="min-h-full">
